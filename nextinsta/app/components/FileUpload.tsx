@@ -1,6 +1,6 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { ImageKitProvider,  IKUpload } from "imagekitio-next";
+import React, {  useState } from "react";
+import {   IKUpload } from "imagekitio-next";
 
 
 import {Loader2} from 'lucide-react'
@@ -14,8 +14,7 @@ interface FileUploadProps{
     fileType?:'image'| 'video'
 }
 
-const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
-const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
+
 
 
 
@@ -107,6 +106,15 @@ return false
           folder={fileType == 'video' ? '/videdoes' :'/images'}
          
         />
+        {
+            uploading && <div className="flex items-center space-x-2 text-primary">
+            <Loader2 size={24} className="animate-spin" />
+            <span>Uploading...</span>
+          </div>
+        }
+        {
+            error && <div className="text-error text-sm text-red-500">{error}</div>
+        }
       
     </div>
   );
